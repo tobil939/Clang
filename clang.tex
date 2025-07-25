@@ -1,0 +1,155 @@
+\documentclass[a4paper,12pt,twoside]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{siunitx}
+
+\geometry{
+  a4paper, 
+  left=3cm,
+  right=3cm,
+  top=2cm,
+  bottom=2cm
+}
+
+% Farben für Code
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{keyword}{RGB}{0,0,180}
+\definecolor{comment}{RGB}{0,128,0}
+\definecolor{string}{RGB}{163,21,21}
+
+\lstset{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{keyword}\bfseries,
+  commentstyle=\color{comment},
+  stringstyle=\color{string},
+  numbers=left,
+  numberstyle=\tiny,
+  breaklines=true,
+  frame=single,
+  showstringspaces=false,
+  tabsize=4
+}
+
+% Titelseite
+\title{Programmiersprache C}
+\author{Tobi}
+\date{\today}
+
+% Kopf und Fußzeilen
+\pagestyle{fancy}
+\fancyhf{} % Kopf- und Fußzeilen leeren
+\fancyfoot[C]{\thepage} % Seitenzahl zentriert in der Fußzeile
+\fancyhead[LE, RO]{\title}
+\fancyhead[LO, RE]{\author}
+
+
+\begin{document}
+
+% Titelseite
+\maketitle
+\thispagestyle{empty} % Keine Kopf-/Fußzeile auf der Titelseite
+\newpage
+
+% Inhaltsverzeichnis
+\tableofcontents
+\newpage
+
+\section{Variablen}
+\subsection{Namen}
+Zulässige Namen enthalten:
+\begin{itemize}
+  \item Buchstaben a \- z und A \- Z 
+  \item Zahlen 0 \- 9 
+  \item Unterstrich \_ 
+  \item Name darf nicht mit einer Zahl beginnen 
+  \item es wird zwischen Groß\- und Kleinschreibung unterschieden 
+  \item dürfen keine Schlüsselwörter enthalten wie if, for, while usw.
+  \item keine Beschränkung der Länge 
+  \item die ersten 31 Ziffern müssen sich unterscheiden
+\end{itemize}
+
+\section{Datentypen} 
+\subsection{Ganze Zahlen}
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+    \hline
+    Typ & Größe & unsigned & signed \\ 
+    \hline 
+    \hline 
+    short & 2 Byte & 0 bis $2^{16}-1$ & $-2^{15}$ bis $2^{15}-1$ \\ 
+    \hline
+    int & 2 Byte & 0 bis $2^{16}-1$ & $-2^{15}$ bis $2^{15}-1$ \\ 
+    int & 4 Byte & 0 bis $2^{32}-1$ & $-2^{31}$ bis $2^{31}-1$ \\
+    \hline
+    long & 4 Byte & 0 bis $2^{32}-1$ & $-2^{31}$ bis $2^{31}-1$ \\
+    long & 8 Byte & 0 bis $2^{64}-1$ & $-2^{63}$ bis $2^{63}-1$ \\
+    \hline 
+  \end{tabular} 
+\end{center}
+Wenn kein Modifikator (unsigned/signed) geschrieben, wird signed verwendet.
+\\
+\begin{center}
+  \begin{tabular}{|c|c|}
+    \hline 
+    Suffix & unsigned int bunga = 238u \\
+    \hline 
+    \hline
+    u & unsigned \\  
+    \hline
+    ul & unsigned long \\
+    \hline
+    ll & long long \\ 
+    \hline
+    ull & unsigned long long \\
+    \hline
+  \end{tabular}
+\end{center}
+Ohne Suffix, schaut der Compiler was er verwenden muss, mit \verb|unsigned int bunga = 238u| \\ 
+wird der Compiler gezwungen unsigned zu verwenden. \\ 
+Es könnten Fehler passieren, wie: \\ 
+\verb| unsigned int big = 3000000000u; // 3 Milliarden, passt in unsigned int, aber nicht in int| \\
+
+\subsection{Gleitkommazahl}
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline 
+    Typ & Größe & Wertebereich & Nachkommastellen & Exponent & Mantisse \\ 
+    \hline 
+    \hline 
+    float & 4 Byte &\(\pm 1.18 \times 10^{-38}\) bis \(\pm 3.4 \times 10^{38}\) & \textasciitilde 7 & 8 Bit & 23 Bit \\ 
+    \hline 
+    double & 8 Byte &\(\pm 2.23 \times 10^{-308}\) bis \(\pm 1.79 \times 10^{308}\) & \textasciitilde 15 & 11 Bit & 52 Bit \\ 
+    \hline 
+    long double & 8 Byte &\(\pm 2.23 \times 10^{-308}\) bis \(\pm 1.79 \times 10^{308}\) & \textasciitilde 15 & 11 Bit & 52 Bit \\ 
+    \hline 
+    long double & 10 Byte &\(\pm 3.37 \times 10^{-4932}\) bis \(\pm 1.18 \times 10^{4932}\) & \textasciitilde 19 & 15 Bit & 64 Bit \\ 
+    (Boarland) & & & & & \\
+    \hline 
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{|c|c|}
+    \hline 
+    Suffix & \\ 
+    \hline 
+    \hline 
+    float & f \\
+    \hline 
+    long double & L \\ 
+    \hline
+  \end{tabular}
+\end{center}
+\end{document}
