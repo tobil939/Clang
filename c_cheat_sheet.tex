@@ -1,0 +1,231 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{titlesec}
+
+% Farben für Code
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{keyword}{RGB}{0,0,180}
+\definecolor{comment}{RGB}{0,128,0}
+\definecolor{string}{RGB}{163,21,21}
+
+\lstset{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{keyword}\bfseries,
+  commentstyle=\color{comment},
+  stringstyle=\color{string},
+  numbers=left,
+  numberstyle=\tiny,
+  breaklines=true,
+  frame=single,
+  showstringspaces=false,
+  tabsize=4
+}
+
+% Layout für die Überschriften
+\titleformat{\section}{\large\bfseries}{}{0em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+
+% Kopf- und Fußzeile
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{C/C++ Cheat Sheet}
+\rhead{\thepage}
+
+\begin{document}
+
+\begin{center}
+	{\LARGE \textbf{C/C++ Cheat Sheet}} \\[1em]
+	{\large A quick guide to C and C++ programming}
+\end{center}
+
+\vspace{0.5cm}
+
+\section{Basics}
+\subsection{Hello, World}
+\begin{lstlisting}[language=C]
+#include <stdio.h>  // C
+int main() {
+    printf("Hello World!\n");
+    return 0;
+}
+// C++:
+#include <iostream>
+int main() {
+    std::cout << "Hello World!" << std::endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Basic Commands/Functions}
+\begin{tabbing}
+	\= \hspace{30mm} \= \hspace{50mm} \kill
+	\> \verb|printf("text");| \> Prints formatted text (C) \\
+	\> \verb|std::cout| \> Prints text (C++) \\
+	\> \verb|scanf("\%d", &var);| \> Reads input (C) \\
+	\> \verb|std::cin >> var;| \> Reads input (C++) \\
+	\> \verb|system("cls");| \> Clears console (platform-dependent) \\
+\end{tabbing}
+
+\subsection{Input and Output}
+\begin{tabbing}
+	\= \hspace{30mm} \= \hspace{50mm} \kill
+	\> \verb|printf("\%d", var);| \> Outputs integer (C) \\
+	\> \verb|std::cout << var;| \> Outputs variable (C++) \\
+	\> \verb|scanf("\%s", str);| \> Reads string (C, no for arrays) \\
+	\> \verb|std::cin >> str;| \> Reads string (C++) \\
+\end{tabbing}
+
+\subsection{Variables and Data Types}
+\begin{tabbing}
+	\= \hspace{30mm} \= \hspace{50mm} \kill
+	\> \verb|int x = 10;| \> Integer \\
+	\> \verb|float y = 5.5;| \> Floating point \\
+	\> \verb|char c = 'a';| \> Character \\
+	\> \verb|bool b = true;| \> Boolean (C++ only) \\
+	\> \verb|std::string s = "text";| \> String (C++ only) \\
+\end{tabbing}
+
+\subsection{Arrays and Pointers}
+\begin{tabbing}
+	\= \hspace{30mm} \= \hspace{50mm} \kill
+	\> \verb|int arr[5] = {1,2,3,4,5};| \> Array initialization \\
+	\> \verb|int *ptr = arr;| \> Pointer to array \\
+	\> \verb|*ptr| \> Dereferences pointer \\
+	\> \verb|ptr + 1| \> Points to next element \\
+\end{tabbing}
+
+\subsection{Operators}
+\subsubsection*{Arithmetic}
+\begin{tabbing}
+	\= \hspace{30mm} \= \hspace{50mm} \kill
+	\> \verb|+| \> Addition \\
+	\> \verb|-| \> Subtraction \\
+	\> \verb|*| \> Multiplication \\
+	\> \verb|/| \> Division \\
+	\> \verb|\%| \> Modulus \\
+\end{tabbing}
+
+\subsubsection*{Comparison}
+\begin{tabbing}
+	\= \hspace{30mm} \= \hspace{50mm} \kill
+	\> \verb|==| \> Equal to \\
+	\> \verb|!=| \> Not equal to \\
+	\> \verb|<| \> Less than \\
+	\> \verb|>| \> Greater than \\
+\end{tabbing}
+
+\subsection{Loops}
+\subsubsection*{for}
+\begin{lstlisting}[language=C]
+for (int i = 0; i < 5; i++) {
+    printf("%d\n", i);
+}
+// C++:
+for (int i : {1,2,3,4,5}) {  // Range-based (C++11)
+    std::cout << i << std::endl;
+}
+\end{lstlisting}
+
+\subsubsection*{while}
+\begin{lstlisting}[language=C]
+int i = 0;
+while (i < 5) {
+    printf("%d\n", i);
+    i++;
+}
+\end{lstlisting}
+
+\subsubsection*{do-while}
+\begin{lstlisting}[language=C]
+int i = 0;
+do {
+    printf("%d\n", i);
+    i++;
+} while (i < 5);
+\end{lstlisting}
+
+\subsection{Conditionals}
+\subsubsection*{if}
+\begin{lstlisting}[language=C]
+int x = 10;
+if (x > 5) {
+    printf("Greater than 5\n");
+} else if (x == 5) {
+    printf("Equal to 5\n");
+} else {
+    printf("Less than 5\n");
+}
+\end{lstlisting}
+
+\subsubsection*{switch}
+\begin{lstlisting}[language=C]
+int x = 2;
+switch (x) {
+    case 1: printf("One\n"); break;
+    case 2: printf("Two\n"); break;
+    default: printf("Other\n");
+}
+\end{lstlisting}
+
+\subsection{Functions}
+\begin{lstlisting}[language=C]
+// C:
+int add(int a, int b) {
+    return a + b;
+}
+// C++:
+int add(int a, int b) {
+    return a + b;
+}
+int main() { printf("%d\n", add(2, 3)); }
+\end{lstlisting}
+
+\subsection{Pointers and Memory}
+\begin{tabbing}
+	\= \hspace{30mm} \= \hspace{50mm} \kill
+	\> \verb|&var| \> Address of variable \\
+	\> \verb|*ptr| \> Value at address \\
+	\> \verb|malloc(size);| \> Allocates memory (C) \\
+	\> \verb|free(ptr);| \> Frees memory (C) \\
+	\> \verb|new int;| \> Allocates memory (C++) \\
+	\> \verb|delete ptr;| \> Frees memory (C++) \\
+\end{tabbing}
+
+\subsection{Error Handling}
+\begin{tabbing}
+	\= \hspace{30mm} \= \hspace{50mm} \kill
+	\> \verb|if (ptr == NULL)| \> Check for null pointer (C) \\
+	\> \verb|try { ... } catch (...) { ... }| \> Exception handling (C++ only) \\
+	\> \verb|errno| \> Error number (C) \\
+	\> \verb|perror("Error");| \> Prints error message (C) \\
+\end{tabbing}
+
+\subsection{File I/O}
+\begin{tabbing}
+	\= \hspace{30mm} \= \hspace{50mm} \kill
+	\> \verb|FILE *f = fopen("file.txt", "r");| \> Opens file (C) \\
+	\> \verb|fclose(f);| \> Closes file (C) \\
+	\> \verb|std::ifstream file("file.txt");| \> Opens file (C++) \\
+	\> \verb|file.close();| \> Closes file (C++) \\
+\end{tabbing}\
+
+\subsection{Classes (C++ only)}
+\begin{lstlisting}[language=C++]
+class MyClass {
+public:
+    int x;
+    MyClass(int val) : x(val) {}
+    void print() { std::cout << x << std::endl; }
+};
+int main() {
+    MyClass obj(5);
+    obj.print();
+}
+\end{lstlisting}
+
+\end{document}
