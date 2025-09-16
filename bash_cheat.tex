@@ -323,6 +323,17 @@ if [[ ... ]]; then
   echo "true"
 fi 
 
+[[ ... ]]                   # 0 if true, 1 if false 
+[[ ... ]] || command        # if testing is false then command 
+[[ ... ]] && command        # if testing is true then command 
+
+[[ ... ]] || continue       # only in a Loop (if, while, until) 
+                            # stopps the current loop run, 
+                            # moves on with the next iteration
+[[ ... ]] || return         # only in a Function 
+                            # stopps the function
+[[ ... ]] || exit           # ends the script
+
 # numbers
 [[ 5 -eq 5 ]]               # 5 = 5 
 [[ 7 -ne 3 ]]               # not equal 
@@ -424,11 +435,11 @@ done
 #!/bin/bash
 for i in {1..5}; do
   if [ $i -eq 3 ]; then
-    continue
+    continue              # jumps over i=3
   fi
   echo "Number $i"
   if [ $i -eq 4 ]; then
-    break
+    break                 # ends the loop when i=4
   fi
 done
 \end{lstlisting}
